@@ -1,0 +1,43 @@
+#!/bin/sh
+
+#colors
+RED='\033[1;31m'
+YELLOW='\033[1;33m'
+GREEN='\033[1;32m'
+NC='\033[0m'
+
+path="/Applications/Roblox.app"
+
+if [ ! -d $path ]; then
+    printf "\n${RED}Roblox not found under Applications folder.\n${NC}"
+    exit 0
+fi
+
+settings_path="$path/Contents/MacOS/ClientSettings"
+
+if [ ! -d $settings_path ]; then
+    mkdir $settings_path
+fi
+
+echo "Please choose an FPS cap: ${YELLOW}(anything above 120 FPS switches to Vulkan Renderer, which is experimental)${NC}"
+read fps
+
+settings="{ \"DFIntTaskSchedulerTargetFps\": $fps }"
+
+if [ $((fps)) -eq 0 ]; then
+    printf "\n${RED}Not a valid FPS cap.${NC}\n"
+    exit 0
+fi
+
+if [ $((fps)) -gt 120 ]; then
+    settings="{ \
+        \"DFIntTaskSchedulerTargetFps\": $fps, \
+        \"FFlagDebugGraphicsDisableMetal\": \"true\", \
+        \"FFlagDebugGraphicsPreferVulkan\": \"true\" \
+    }"
+
+    printf "\n${YELLOW}Switched to Vulkan Renderer.${NC}"
+fi
+
+echo $settings > "$settings_path/ClientAppSettings.json"
+printf "\n${GREEN}FPS cap updated!${NC}\n"
