@@ -1,4 +1,4 @@
-# Roblox FPS Locker for macOS
+# Roblox FPS Unlocker for macOS
 
 Welcome to the Roblox FPS Unlocker for macOS! This tool allows you to unlock the frame rate in Roblox, providing a smoother and more responsive gaming experience.
 
@@ -11,7 +11,7 @@ Welcome to the Roblox FPS Unlocker for macOS! This tool allows you to unlock the
 
 ## Prerequisites
 
-Before using this FPS locker, ensure you have the following:
+Before using this FPS unlocker, ensure you have the following:
 
 - macOS system
 - Roblox installed
